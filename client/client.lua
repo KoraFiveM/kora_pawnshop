@@ -9,8 +9,7 @@ local pickupAction = 'qb-pawnshop:pickup'
 local isMelting = false
 local canTake = false
 local meltedItem = {}
-
--- Helpers
+local inited = nil
 
 local function splitItemId(id)
     local sep = id and id:find(':', 1, true)
@@ -19,6 +18,7 @@ local function splitItemId(id)
 end
 
 local function eligibleItems(configList)
+    if not inited then return {} end
     local playerItems = QBCore.Functions.GetPlayerData().items
     local items = {}
     for _, invItem in pairs(playerItems) do
@@ -39,7 +39,6 @@ local function itemsBlock(listItems, emptyDescription)
     return { type = 'list', id = 'items', items = listItems }
 end
 
--- Navigation content
 
 local function buildSellItems()
     local listItems = {}
@@ -130,7 +129,6 @@ local function refreshApp()
     QB.nui.updateApp(appId, { navigation = buildNavigation() })
 end
 
--- Actions
 
 local function onAction(actionId, context)
     if actionId == pickupAction then
@@ -209,8 +207,6 @@ CreateThread(function()
     end
 end)
 
--- Events
-
 RegisterNetEvent('qb-pawnshop:client:refreshApp', function()
     refreshApp()
 end)
@@ -242,3 +238,4 @@ RegisterNetEvent('qb-pawnshop:client:resetPickup', function()
     meltedItem = {}
     refreshApp()
 end)
+inited = true
