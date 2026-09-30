@@ -1,6 +1,16 @@
 # qb-pawnshop
 Pawn Shop For QB-Core
 
+Melting inputs, completion times and uncollected rewards are tracked on the
+server. Pickup ignores client-supplied quantities, and inventory-full retries
+only deliver rewards still owed. Pending melts last for the current character
+session; logout, disconnect or a resource restart clears them.
+
+Run `lua test/smoke/melting.lua` from this repository, with `qbinventory` and
+`qblib` checked out alongside it. The regression uses actual inventory,
+pawnshop and list validation code with a controlled clock and host stubs;
+it does not start FiveM or write SQL.
+
 # License
 
     QBCore Framework

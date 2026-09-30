@@ -9,6 +9,7 @@ local pickupAction = 'qb-pawnshop:pickup'
 local isMelting = false
 local canTake = false
 local meltedItem = {}
+local meltVersion = 0
 local inited = nil
 
 local function splitItemId(id)
@@ -106,8 +107,8 @@ local function buildNavigation()
 
     if canTake then
         local pickupItems = {}
-        for _, batch in ipairs(meltedItem) do
-            pickupItems[#pickupItems + 1] = { id = 'melted:' .. batch.name, label = sharedItems[batch.name].label, badge = batch.amount }
+        for index, batch in ipairs(meltedItem) do
+            pickupItems[#pickupItems + 1] = { id = 'melted:' .. batch.name .. ':' .. index, label = sharedItems[batch.name].label, badge = batch.amount }
         end
 
         nav[#nav + 1] = {
@@ -214,12 +215,14 @@ end)
 RegisterNetEvent('qb-pawnshop:client:startMelting', function(itemName, meltingAmount, meltSeconds)
     if isMelting then return end
     isMelting = true
-    meltedItem = {}
+    meltVersion = meltVersion + 1
+    local version = meltVersion
     refreshApp()
 
     CreateThread(function()
-        while isMelting do
-            if not LocalPlayer.state.isLoggedIn then break end
+        while isMelting and meltVersion == version do
+            if meltSeconds > 0 then Wait(1000) end
+            if not isMelting or meltVersion ~= version or not LocalPlayer.state.isLoggedIn then return end
             meltSeconds = meltSeconds - 1
             if meltSeconds <= 0 then
                 canTake = true
@@ -228,14 +231,25 @@ RegisterNetEvent('qb-pawnshop:client:startMelting', function(itemName, meltingAm
                 refreshApp()
                 QB.notify.send({ title = 'Pawn Store', message = 'We finished melting your items. You can come pick them up at any time.', type = 'success' })
             end
-            Wait(1000)
         end
     end)
 end)
 
-RegisterNetEvent('qb-pawnshop:client:resetPickup', function()
+RegisterNetEvent('qb-pawnshop:client:resetPickup', function(batches, stillMelting)
+    if stillMelting == false then
+        isMelting = false
+        meltVersion = meltVersion + 1
+    end
+    meltedItem = batches or {}
+    canTake = #meltedItem > 0
+    refreshApp()
+end)
+
+RegisterNetEvent('QBCore:Client:OnPlayerUnload', function()
+    isMelting = false
     canTake = false
     meltedItem = {}
+    meltVersion = meltVersion + 1
     refreshApp()
 end)
 inited = true
