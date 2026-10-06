@@ -48,7 +48,7 @@ exports = setmetatable({}, {
                     if name == 'getShared' then return defs[field] end
                     if name == 'getPlayerData' then
                         if not data[src] then return nil end
-                        return field and QbInventory.copy(data[src].items) or QbInventory.copy(data[src])
+                        return field and QbInventory.copy(data[src][field[1]]) or QbInventory.copy(data[src])
                     end
                     if name == 'setPath' then
                         if field[2] then data[src].items[field[2]] = value else data[src].items = value end

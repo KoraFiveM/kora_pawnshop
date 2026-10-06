@@ -1,5 +1,6 @@
-local QBCore = exports['qb-core']:GetCoreObject({ 'Functions' })
-local sharedItems = exports['qb-core']:GetShared('Items')
+local function itemData(name)
+    return exports.qbcore:getShared('items', name) or { label = name }
+end
 
 local appId = 'qb-pawnshop:app'
 local sellAction = 'qb-pawnshop:sell'
@@ -20,7 +21,7 @@ end
 
 local function eligibleItems(configList)
     if not inited then return {} end
-    local playerItems = QBCore.Functions.GetPlayerData().items
+    local playerItems = exports.qbcore:getPlayerData({ 'items' }) or {}
     local items = {}
     for _, invItem in pairs(playerItems) do
         for _, entry in ipairs(configList) do
@@ -46,7 +47,7 @@ local function buildSellItems()
     for _, item in ipairs(eligibleItems(Config.PawnItems)) do
         listItems[#listItems + 1] = {
             id = 'sell:' .. item.name,
-            label = sharedItems[item.name].label,
+            label = itemData(item.name).label,
             description = 'Selling Price $' .. item.entry.price,
             badge = item.amount,
             action = {
@@ -66,8 +67,8 @@ local function buildMeltItems()
     for _, item in ipairs(eligibleItems(Config.MeltingItems)) do
         listItems[#listItems + 1] = {
             id = 'melt:' .. item.name,
-            label = sharedItems[item.name].label,
-            description = 'Melt ' .. sharedItems[item.name].label,
+            label = itemData(item.name).label,
+            description = 'Melt ' .. itemData(item.name).label,
             badge = item.amount,
             action = {
                 id = meltAction,
@@ -108,7 +109,7 @@ local function buildNavigation()
     if canTake then
         local pickupItems = {}
         for index, batch in ipairs(meltedItem) do
-            pickupItems[#pickupItems + 1] = { id = 'melted:' .. batch.name .. ':' .. index, label = sharedItems[batch.name].label, badge = batch.amount }
+            pickupItems[#pickupItems + 1] = { id = 'melted:' .. batch.name .. ':' .. index, label = itemData(batch.name).label, badge = batch.amount }
         end
 
         nav[#nav + 1] = {

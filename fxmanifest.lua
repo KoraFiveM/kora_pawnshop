@@ -6,6 +6,7 @@ description 'Allows players to sell items for money, built on the qblib AppShell
 version '2.0.0'
 
 dependency 'qblib'
+dependency 'qbcore'
 
 shared_script {
     '@qblib/init.lua',

@@ -1,4 +1,6 @@
-local sharedItems = exports['qb-core']:GetShared('Items')
+local function itemData(name)
+    return exports.qbcore:getShared('items', name)
+end
 local pendingMelts = {}
 
 local function positiveInteger(value)
@@ -8,8 +10,7 @@ local function positiveInteger(value)
 end
 
 local function citizenId(src)
-    local player = exports['qb-core']:GetPlayer(src)
-    return player and player.PlayerData.citizenid
+    return exports.qbcore:getPlayerData(src, { 'citizenid' })
 end
 
 local function currentMelt(src, state)
@@ -17,11 +18,12 @@ local function currentMelt(src, state)
 end
 
 local function exploitBan(src, reason)
+    local identifiers = exports.qbcore:getIdentifiers(src)
     MySQL.insert('INSERT INTO bans (name, license, discord, ip, reason, expire, bannedby) VALUES (?, ?, ?, ?, ?, ?, ?)', {
         GetPlayerName(src),
-        QBCore.Functions.GetIdentifier(src, 'license'),
-        QBCore.Functions.GetIdentifier(src, 'discord'),
-        QBCore.Functions.GetIdentifier(src, 'ip'),
+        identifiers.license,
+        identifiers.discord,
+        identifiers.ip,
         reason,
         2147483647,
         'qb-pawnshop',
@@ -52,17 +54,16 @@ RegisterNetEvent('qb-pawnshop:server:sellPawnItems', function(itemName, itemAmou
         return
     end
 
-    local player = exports['qb-core']:GetPlayer(src)
     local totalPrice = tonumber(itemAmount) * entry.price
 
     if exports['qb-inventory']:RemoveItem(src, itemName, tonumber(itemAmount), false, 'qb-pawnshop:server:sellPawnItems') then
-        player.AddMoney(Config.BankMoney and 'bank' or 'cash', totalPrice, 'qb-pawnshop:server:sellPawnItems')
+        exports.qbcore:addMoney(src, Config.BankMoney and 'bank' or 'cash', totalPrice, 'qb-pawnshop:server:sellPawnItems')
         QB.notify.send(src, {
             title = QB.lang('info.title'),
-            message = QB.lang('success.sold', { value = tonumber(itemAmount), value2 = sharedItems[itemName].label, value3 = totalPrice }),
+            message = QB.lang('success.sold', { value = tonumber(itemAmount), value2 = itemData(itemName).label, value3 = totalPrice }),
             type = 'success',
         })
-        TriggerClientEvent('qb-inventory:client:ItemBox', src, sharedItems[itemName], 'remove')
+        TriggerClientEvent('qb-inventory:client:ItemBox', src, itemData(itemName), 'remove')
     else
         QB.notify.send(src, { title = QB.lang('info.title'), message = QB.lang('error.no_items'), type = 'error' })
     end
@@ -106,7 +107,7 @@ RegisterNetEvent('qb-pawnshop:server:meltItemRemove', function(itemName, itemAmo
     for _, reward in pairs(entry.rewards) do
         local perItem = tonumber(reward.amount)
         local amount = perItem and itemAmount * 1.0 * perItem
-        if not amount or amount ~= amount or math.abs(amount) == math.huge or not sharedItems[reward.item] then
+        if not amount or amount ~= amount or math.abs(amount) == math.huge or not itemData(reward.item) then
             print('[qb-pawnshop] Invalid melting reward for ' .. tostring(itemName))
             return
         end
@@ -125,7 +126,7 @@ RegisterNetEvent('qb-pawnshop:server:meltItemRemove', function(itemName, itemAmo
         state.batches[#state.batches + 1] = {
             name = itemName, amount = itemAmount, readyAt = GetGameTimer() + duration, rewards = rewards,
         }
-        TriggerClientEvent('qb-inventory:client:ItemBox', src, sharedItems[itemName], 'remove')
+        TriggerClientEvent('qb-inventory:client:ItemBox', src, itemData(itemName), 'remove')
         local meltMinutes = duration / 60000
         TriggerClientEvent('qb-pawnshop:client:startMelting', src, itemName, itemAmount, duration / 1000)
         QB.notify.send(src, { title = QB.lang('info.title'), message = QB.lang('info.melt_wait', { value = meltMinutes }), type = 'info' })
@@ -164,10 +165,10 @@ RegisterNetEvent('qb-pawnshop:server:pickupMelted', function(batches)
                     if added then reward.delivered = true else outstanding = true end
                     if not currentMelt(src, state) then state.busy = false; return end
                     if added then
-                        TriggerClientEvent('qb-inventory:client:ItemBox', src, sharedItems[reward.item], 'add')
-                        QB.notify.send(src, { title = QB.lang('info.title'), message = QB.lang('success.items_received', { value = reward.amount, value2 = sharedItems[reward.item].label }), type = 'success' })
+                        TriggerClientEvent('qb-inventory:client:ItemBox', src, itemData(reward.item), 'add')
+                        QB.notify.send(src, { title = QB.lang('info.title'), message = QB.lang('success.items_received', { value = reward.amount, value2 = itemData(reward.item).label }), type = 'success' })
                     else
-                        QB.notify.send(src, { title = QB.lang('info.title'), message = QB.lang('error.inventory_full', { value = sharedItems[reward.item].label }), type = 'warning', duration = 7500 })
+                        QB.notify.send(src, { title = QB.lang('info.title'), message = QB.lang('error.inventory_full', { value = itemData(reward.item).label }), type = 'warning', duration = 7500 })
                     end
                 end
             end
