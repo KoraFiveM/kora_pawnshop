@@ -1,5 +1,5 @@
 local function itemData(name)
-    return exports.qbcore:getShared('items', name) or { label = name }
+    return exports.kora_core:getShared('items', name) or { label = name }
 end
 
 local appId = 'qb-pawnshop:app'
@@ -21,7 +21,7 @@ end
 
 local function eligibleItems(configList)
     if not inited then return {} end
-    local playerItems = exports.qbcore:getPlayerData({ 'items' }) or {}
+    local playerItems = exports.kora_core:getPlayerData({ 'items' }) or {}
     local items = {}
     for _, invItem in pairs(playerItems) do
         for _, entry in ipairs(configList) do
@@ -193,7 +193,7 @@ CreateThread(function()
             name = 'Pawn Store',
         })
 
-        exports.qbtarget:addBoxZone({
+        exports.kora_target:addBoxZone({
             coords = location.coords,
             size = location.size,
             rotation = location.rotation,

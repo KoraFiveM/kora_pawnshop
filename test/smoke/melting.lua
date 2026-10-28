@@ -1,4 +1,4 @@
--- Actual current pawnshop and qbinventory authority; no FiveM or SQL writes.
+-- Actual current pawnshop and kora_inventory authority; no FiveM or SQL writes.
 local root = '../'
 local function noop() end
 local events, exportsByName, clientEvents, threads = {}, {}, {}, {}
@@ -16,8 +16,8 @@ local defs = {
 }
 vector3 = function(x, y, z) return { x = x, y = y, z = z } end
 vector4 = function(x, y, z, w) return { x = x, y = y, z = z, w = w } end
-GetCurrentResourceName = function() return 'qbinventory' end
-GetInvokingResource = function() return 'qbpawnshop' end
+GetCurrentResourceName = function() return 'kora_inventory' end
+GetInvokingResource = function() return 'kora_pawnshop' end
 GetGameTimer = function() return clock end
 GetPlayerPed = function(src) return src end
 GetEntityCoords = function() return { x = 412.34, y = 314.81, z = 103.13 } end
@@ -42,7 +42,7 @@ exports = setmetatable({}, {
     __index = function(_, resource)
         return setmetatable({}, { __index = function(_, name)
             return function(_, ...)
-                if resource == 'qbcore' then
+                if resource == 'kora_core' then
                     local src, field, value = ...
                     if name == 'allShared' then return {} end
                     if name == 'getShared' then return defs[field] end
@@ -72,10 +72,10 @@ exports = setmetatable({}, {
     end,
 })
 Config = {}
-dofile(root .. 'qbinventory/config.lua'); dofile(root .. 'qbinventory/shared.lua'); dofile(root .. 'qbinventory/server.lua')
+dofile(root .. 'kora_inventory/config.lua'); dofile(root .. 'kora_inventory/shared.lua'); dofile(root .. 'kora_inventory/server.lua')
 local api = QbInventory.api
 local inventoryConfig = Config.qbinventory
-dofile(root .. 'qbpawnshop/shared/config.lua')
+dofile(root .. 'kora_pawnshop/shared/config.lua')
 dofile(arg[1] or 'server/server.lua')
 local function fire(name, ...) source = 7; return assert(events['qb-pawnshop:server:' .. name])[1](...) end
 local function count(name) return api.getItemCount(7, name) end
@@ -285,7 +285,7 @@ equal(count('goldbar'), 2)
 -- Run the actual client timer with controlled coroutine waits and capture only NUI.
 reset()
 local app, navigation, sent
-local nuiFile = assert(io.open('../qblib/modules/nui/client.lua', 'r'))
+local nuiFile = assert(io.open('../kora_lib/modules/nui/client.lua', 'r'))
 local nuiSource = nuiFile:read('*a')
 nuiFile:close()
 local listStart = assert(nuiSource:find('local function assertListItems(', 1, true))

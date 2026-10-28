@@ -1,5 +1,5 @@
 local function itemData(name)
-    return exports.qbcore:getShared('items', name)
+    return exports.kora_core:getShared('items', name)
 end
 local pendingMelts = {}
 
@@ -10,7 +10,7 @@ local function positiveInteger(value)
 end
 
 local function citizenId(src)
-    return exports.qbcore:getPlayerData(src, { 'citizenid' })
+    return exports.kora_core:getPlayerData(src, { 'citizenid' })
 end
 
 local function currentMelt(src, state)
@@ -18,7 +18,7 @@ local function currentMelt(src, state)
 end
 
 local function exploitBan(src, reason)
-    local identifiers = exports.qbcore:getIdentifiers(src)
+    local identifiers = exports.kora_core:getIdentifiers(src)
     MySQL.insert('INSERT INTO bans (name, license, discord, ip, reason, expire, bannedby) VALUES (?, ?, ?, ?, ?, ?, ?)', {
         GetPlayerName(src),
         identifiers.license,
@@ -57,7 +57,7 @@ RegisterNetEvent('qb-pawnshop:server:sellPawnItems', function(itemName, itemAmou
     local totalPrice = tonumber(itemAmount) * entry.price
 
     if exports['qb-inventory']:RemoveItem(src, itemName, tonumber(itemAmount), false, 'qb-pawnshop:server:sellPawnItems') then
-        exports.qbcore:addMoney(src, Config.BankMoney and 'bank' or 'cash', totalPrice, 'qb-pawnshop:server:sellPawnItems')
+        exports.kora_core:addMoney(src, Config.BankMoney and 'bank' or 'cash', totalPrice, 'qb-pawnshop:server:sellPawnItems')
         QB.notify.send(src, {
             title = QB.lang('info.title'),
             message = QB.lang('success.sold', { value = tonumber(itemAmount), value2 = itemData(itemName).label, value3 = totalPrice }),

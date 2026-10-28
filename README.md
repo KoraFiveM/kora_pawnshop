@@ -6,8 +6,8 @@ server. Pickup ignores client-supplied quantities, and inventory-full retries
 only deliver rewards still owed. Pending melts last for the current character
 session; logout, disconnect or a resource restart clears them.
 
-Run `lua test/smoke/melting.lua` from this repository, with `qbinventory` and
-`qblib` checked out alongside it. The regression uses actual inventory,
+Run `lua test/smoke/melting.lua` from this repository, with `kora_inventory` and
+`kora_lib` checked out alongside it. The regression uses actual inventory,
 pawnshop and list validation code with a controlled clock and host stubs;
 it does not start FiveM or write SQL.
 
