@@ -291,7 +291,7 @@ nuiFile:close()
 local listStart = assert(nuiSource:find('local function assertListItems(', 1, true))
 local listEnd = assert(nuiSource:find('local function assertAppContent(', listStart, true))
 local assertListItems = assert(load(nuiSource:sub(listStart, listEnd - 1) .. '\nreturn assertListItems',
-    'qblib actual list validator', 't', { assert = assert, type = type, VALID_TONES = {} }))()
+    'kora_lib actual list validator', 't', { assert = assert, type = type, VALID_TONES = {} }))()
 QB.nui = {
     registerApp = function(value) app = value end,
     updateApp = function(_, value)

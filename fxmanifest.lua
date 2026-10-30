@@ -4,7 +4,7 @@ lua54 'yes'
 -- Keep the legacy resource name resolvable for exports['qbpawnshop'] callers.
 provide 'qbpawnshop'
 author 'Kakarot'
-description 'Allows players to sell items for money, built on the qblib AppShell'
+description 'Allows players to sell items for money, built on the kora_lib AppShell'
 version '2.0.0'
 
 dependency 'kora_lib'
