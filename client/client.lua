@@ -128,7 +128,7 @@ local function buildNavigation()
 end
 
 local function refreshApp()
-    QB.nui.updateApp(appId, { navigation = buildNavigation() })
+    Kora.nui.updateApp(appId, { navigation = buildNavigation() })
 end
 
 
@@ -152,7 +152,7 @@ local function onAction(actionId, context)
     end
 end
 
-QB.nui.registerApp({
+Kora.nui.registerApp({
     id = appId,
     title = 'Pawn Store',
     description = 'Open the Pawn Shop',
@@ -169,9 +169,9 @@ QB.nui.registerApp({
 
 
 local function openPawnShop()
-    if QB.nui.isAppOpen(appId) then return end
+    if Kora.nui.isAppOpen(appId) then return end
      if Config.UseTimes and not (GetClockHours() >= Config.TimeOpen and GetClockHours() <= Config.TimeClosed) then
-         QB.notify.send({
+         Kora.notify.send({
              title = 'Pawn Store',
              message = 'Pawnshop is closed. Come back between ' .. Config.TimeOpen .. ':00 AM - ' .. Config.TimeClosed .. ':00 PM',
              type = 'error',
@@ -179,13 +179,13 @@ local function openPawnShop()
          return
      end
     refreshApp()
-    QB.nui.openApp(appId)
+    Kora.nui.openApp(appId)
 end
 
 
 CreateThread(function()
     for key, location in pairs(Config.PawnLocation) do
-        QB.blips.create(location.coords, {
+        Kora.blips.create(location.coords, {
             sprite = 431,
             color = 5,
             scale = 0.7,
@@ -230,7 +230,7 @@ RegisterNetEvent('qb-pawnshop:client:startMelting', function(itemName, meltingAm
                 isMelting = false
                 meltedItem[#meltedItem + 1] = { name = itemName, amount = meltingAmount }
                 refreshApp()
-                QB.notify.send({ title = 'Pawn Store', message = 'We finished melting your items. You can come pick them up at any time.', type = 'success' })
+                Kora.notify.send({ title = 'Pawn Store', message = 'We finished melting your items. You can come pick them up at any time.', type = 'success' })
             end
         end
     end)

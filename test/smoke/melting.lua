@@ -34,7 +34,7 @@ TriggerEvent = function(name, ...)
 end
 TriggerClientEvent = function(name, src, ...) clientEvents[#clientEvents + 1] = { name = name, src = src, args = { ... } } end
 MySQL = { insert = function() error('probe attempted a database write') end }
-QB = { resources = { serverRegistry = function() return { track = noop, untrack = noop } end },
+Kora = { resources = { serverRegistry = function() return { track = noop, untrack = noop } end },
     callback = { register = noop }, distance = { player = function() return true end }, sql = {},
     logging = { event = noop }, lang = function(key) return key end, notify = { send = noop } }
 exports = setmetatable({}, {
@@ -292,7 +292,7 @@ local listStart = assert(nuiSource:find('local function assertListItems(', 1, tr
 local listEnd = assert(nuiSource:find('local function assertAppContent(', listStart, true))
 local assertListItems = assert(load(nuiSource:sub(listStart, listEnd - 1) .. '\nreturn assertListItems',
     'kora_lib actual list validator', 't', { assert = assert, type = type, VALID_TONES = {} }))()
-QB.nui = {
+Kora.nui = {
     registerApp = function(value) app = value end,
     updateApp = function(_, value)
         navigation = value.navigation
@@ -303,7 +303,7 @@ QB.nui = {
     isAppOpen = function() return false end,
     openApp = noop,
 }
-QB.blips = { create = noop }
+Kora.blips = { create = noop }
 LocalPlayer = { state = { isLoggedIn = true } }
 TriggerServerEvent = function(name, ...) sent = { name = name, args = { ... } } end
 dofile(arg[2] or 'client/client.lua')

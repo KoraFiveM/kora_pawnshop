@@ -28,13 +28,13 @@ local function exploitBan(src, reason)
         2147483647,
         'qb-pawnshop',
     })
-    QB.logging.event('pawnshop', src, { action = 'ban', reason = reason })
+    Kora.logging.event('pawnshop', src, { action = 'ban', reason = reason })
     DropPlayer(src, 'You were permanently banned by the server for: Exploiting')
 end
 
 local function nearAnyPawnLocation(src)
     for _, location in pairs(Config.PawnLocation) do
-        if QB.distance.player(src, location.coords, location.distance or 5.0) then
+        if Kora.distance.player(src, location.coords, location.distance or 5.0) then
             return true
         end
     end
@@ -58,14 +58,14 @@ RegisterNetEvent('qb-pawnshop:server:sellPawnItems', function(itemName, itemAmou
 
     if exports['qb-inventory']:RemoveItem(src, itemName, tonumber(itemAmount), false, 'qb-pawnshop:server:sellPawnItems') then
         exports.kora_core:addMoney(src, Config.BankMoney and 'bank' or 'cash', totalPrice, 'qb-pawnshop:server:sellPawnItems')
-        QB.notify.send(src, {
-            title = QB.lang('info.title'),
-            message = QB.lang('success.sold', { value = tonumber(itemAmount), value2 = itemData(itemName).label, value3 = totalPrice }),
+        Kora.notify.send(src, {
+            title = Kora.lang('info.title'),
+            message = Kora.lang('success.sold', { value = tonumber(itemAmount), value2 = itemData(itemName).label, value3 = totalPrice }),
             type = 'success',
         })
         TriggerClientEvent('qb-inventory:client:ItemBox', src, itemData(itemName), 'remove')
     else
-        QB.notify.send(src, { title = QB.lang('info.title'), message = QB.lang('error.no_items'), type = 'error' })
+        Kora.notify.send(src, { title = Kora.lang('info.title'), message = Kora.lang('error.no_items'), type = 'error' })
     end
 
     TriggerClientEvent('qb-pawnshop:client:refreshApp', src)
@@ -129,9 +129,9 @@ RegisterNetEvent('qb-pawnshop:server:meltItemRemove', function(itemName, itemAmo
         TriggerClientEvent('qb-inventory:client:ItemBox', src, itemData(itemName), 'remove')
         local meltMinutes = duration / 60000
         TriggerClientEvent('qb-pawnshop:client:startMelting', src, itemName, itemAmount, duration / 1000)
-        QB.notify.send(src, { title = QB.lang('info.title'), message = QB.lang('info.melt_wait', { value = meltMinutes }), type = 'info' })
+        Kora.notify.send(src, { title = Kora.lang('info.title'), message = Kora.lang('info.melt_wait', { value = meltMinutes }), type = 'info' })
     else
-        QB.notify.send(src, { title = QB.lang('info.title'), message = QB.lang('error.no_items'), type = 'error' })
+        Kora.notify.send(src, { title = Kora.lang('info.title'), message = Kora.lang('error.no_items'), type = 'error' })
     end
     state.busy = false
 end)
@@ -166,9 +166,9 @@ RegisterNetEvent('qb-pawnshop:server:pickupMelted', function(batches)
                     if not currentMelt(src, state) then state.busy = false; return end
                     if added then
                         TriggerClientEvent('qb-inventory:client:ItemBox', src, itemData(reward.item), 'add')
-                        QB.notify.send(src, { title = QB.lang('info.title'), message = QB.lang('success.items_received', { value = reward.amount, value2 = itemData(reward.item).label }), type = 'success' })
+                        Kora.notify.send(src, { title = Kora.lang('info.title'), message = Kora.lang('success.items_received', { value = reward.amount, value2 = itemData(reward.item).label }), type = 'success' })
                     else
-                        QB.notify.send(src, { title = QB.lang('info.title'), message = QB.lang('error.inventory_full', { value = itemData(reward.item).label }), type = 'warning', duration = 7500 })
+                        Kora.notify.send(src, { title = Kora.lang('info.title'), message = Kora.lang('error.inventory_full', { value = itemData(reward.item).label }), type = 'warning', duration = 7500 })
                     end
                 end
             end
