@@ -41,7 +41,6 @@ local function itemsBlock(listItems, emptyDescription)
     return { type = 'list', id = 'items', items = listItems }
 end
 
-
 local function buildSellItems()
     local listItems = {}
     for _, item in ipairs(eligibleItems(Config.PawnItems)) do
@@ -65,10 +64,11 @@ end
 local function buildMeltItems()
     local listItems = {}
     for _, item in ipairs(eligibleItems(Config.MeltingItems)) do
+        local label = itemData(item.name).label
         listItems[#listItems + 1] = {
             id = 'melt:' .. item.name,
-            label = itemData(item.name).label,
-            description = 'Melt ' .. itemData(item.name).label,
+            label = label,
+            description = 'Melt ' .. label,
             badge = item.amount,
             action = {
                 id = meltAction,
@@ -131,7 +131,6 @@ local function refreshApp()
     Kora.nui.updateApp(appId, { navigation = buildNavigation() })
 end
 
-
 local function onAction(actionId, context)
     if actionId == pickupAction then
         TriggerServerEvent('qb-pawnshop:server:pickupMelted', meltedItem)
@@ -167,7 +166,6 @@ Kora.nui.registerApp({
     onAction = onAction,
 })
 
-
 local function openPawnShop()
     if Kora.nui.isAppOpen(appId) then return end
      if Config.UseTimes and not (GetClockHours() >= Config.TimeOpen and GetClockHours() <= Config.TimeClosed) then
@@ -182,9 +180,8 @@ local function openPawnShop()
     Kora.nui.openApp(appId)
 end
 
-
 CreateThread(function()
-    for key, location in pairs(Config.PawnLocation) do
+    for _, location in pairs(Config.PawnLocation) do
         Kora.blips.create(location.coords, {
             sprite = 431,
             color = 5,
@@ -202,16 +199,14 @@ CreateThread(function()
                 {
                     label = 'Pawn Store',
                     icon = 'Store',
-                    onSelect = function() openPawnShop() end
+                    onSelect = openPawnShop
                 }
             }
         })
     end
 end)
 
-RegisterNetEvent('qb-pawnshop:client:refreshApp', function()
-    refreshApp()
-end)
+RegisterNetEvent('qb-pawnshop:client:refreshApp', refreshApp)
 
 RegisterNetEvent('qb-pawnshop:client:startMelting', function(itemName, meltingAmount, meltSeconds)
     if isMelting then return end
