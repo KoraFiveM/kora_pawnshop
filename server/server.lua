@@ -127,7 +127,7 @@ RegisterNetEvent('qb-pawnshop:server:meltItemRemove', function(itemName, itemAmo
             name = itemName, amount = itemAmount, readyAt = GetGameTimer() + duration, rewards = rewards,
         }
         TriggerClientEvent('qb-inventory:client:ItemBox', src, itemData(itemName), 'remove')
-        local meltMinutes = duration / 60000
+        local meltMinutes = math.ceil(duration / 60000)
         TriggerClientEvent('qb-pawnshop:client:startMelting', src, itemName, itemAmount, duration / 1000)
         notifyPlayer(src, 'info.melt_wait', { value = meltMinutes }, 'info')
     else

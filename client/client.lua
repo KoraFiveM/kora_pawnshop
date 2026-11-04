@@ -53,6 +53,7 @@ local function buildItemListing(configList, opts)
             action = {
                 id = opts.actionId,
                 label = opts.actionLabel,
+                submitLabel = opts.actionLabel,
                 fields = {
                     { id = 'amount', label = 'Max Amount ' .. item.amount, type = 'number', min = 1, max = item.amount, default = 1, required = true },
                 },
@@ -66,7 +67,7 @@ local function buildSellItems()
     return buildItemListing(Config.PawnItems, {
         prefix = 'sell:',
         actionId = sellAction,
-        actionLabel = 'Sell',
+        actionLabel = Kora.lang('ui.sell'),
         description = function(_, item) return 'Selling Price $' .. item.entry.price end,
     })
 end
@@ -75,7 +76,7 @@ local function buildMeltItems()
     return buildItemListing(Config.MeltingItems, {
         prefix = 'melt:',
         actionId = meltAction,
-        actionLabel = 'Melt',
+        actionLabel = Kora.lang('ui.melt'),
         description = function(label) return 'Melt ' .. label end,
     })
 end

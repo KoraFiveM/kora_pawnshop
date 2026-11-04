@@ -1,0 +1,18 @@
+{
+    "info": {
+        "title": "Pawn Shop",
+        "melt_wait": "Your items are melting. Come back in %{value} minutes."
+    },
+    "success": {
+        "sold": "You sold %{value}x %{value2} for $%{value3}",
+        "items_received": "You received %{value}x %{value2}"
+    },
+    "error": {
+        "no_items": "You don't have enough of that item",
+        "inventory_full": "Your inventory is full, you couldn't carry %{value}"
+    },
+    "ui": {
+        "sell": "Sell",
+        "melt": "Melt"
+    }
+}

@@ -22,3 +22,7 @@ server_scripts {
 }
 
 client_script 'client/**.lua'
+
+files {
+    'locales/*.json',
+}
