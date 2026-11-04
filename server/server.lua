@@ -1,16 +1,20 @@
 local function itemData(name)
-    return exports.kora_core:getShared('items', name)
+    return exports.kora_core:getShared('items', name) or { label = name }
 end
 local pendingMelts = {}
 
 local function positiveInteger(value)
     local amount = tonumber(value)
-    if not amount or amount <= 0 or amount ~= math.floor(amount) then return nil end
+    if not amount or amount <= 0 or not Kora.util.isInteger(amount) then return nil end
     return math.tointeger(amount)
 end
 
 local function citizenId(src)
     return exports.kora_core:getPlayerData(src, { 'citizenid' })
+end
+
+local function notifyPlayer(src, key, vars, notifyType, duration)
+    Kora.notify.send(src, { title = Kora.lang('info.title'), message = Kora.lang(key, vars), type = notifyType, duration = duration })
 end
 
 local function currentMelt(src, state)
@@ -58,14 +62,10 @@ RegisterNetEvent('qb-pawnshop:server:sellPawnItems', function(itemName, itemAmou
 
     if exports['qb-inventory']:RemoveItem(src, itemName, tonumber(itemAmount), false, 'qb-pawnshop:server:sellPawnItems') then
         exports.kora_core:addMoney(src, Config.BankMoney and 'bank' or 'cash', totalPrice, 'qb-pawnshop:server:sellPawnItems')
-        Kora.notify.send(src, {
-            title = Kora.lang('info.title'),
-            message = Kora.lang('success.sold', { value = tonumber(itemAmount), value2 = itemData(itemName).label, value3 = totalPrice }),
-            type = 'success',
-        })
+        notifyPlayer(src, 'success.sold', { value = tonumber(itemAmount), value2 = itemData(itemName).label, value3 = totalPrice }, 'success')
         TriggerClientEvent('qb-inventory:client:ItemBox', src, itemData(itemName), 'remove')
     else
-        Kora.notify.send(src, { title = Kora.lang('info.title'), message = Kora.lang('error.no_items'), type = 'error' })
+        notifyPlayer(src, 'error.no_items', nil, 'error')
     end
 
     TriggerClientEvent('qb-pawnshop:client:refreshApp', src)
@@ -129,9 +129,9 @@ RegisterNetEvent('qb-pawnshop:server:meltItemRemove', function(itemName, itemAmo
         TriggerClientEvent('qb-inventory:client:ItemBox', src, itemData(itemName), 'remove')
         local meltMinutes = duration / 60000
         TriggerClientEvent('qb-pawnshop:client:startMelting', src, itemName, itemAmount, duration / 1000)
-        Kora.notify.send(src, { title = Kora.lang('info.title'), message = Kora.lang('info.melt_wait', { value = meltMinutes }), type = 'info' })
+        notifyPlayer(src, 'info.melt_wait', { value = meltMinutes }, 'info')
     else
-        Kora.notify.send(src, { title = Kora.lang('info.title'), message = Kora.lang('error.no_items'), type = 'error' })
+        notifyPlayer(src, 'error.no_items', nil, 'error')
     end
     state.busy = false
 end)
@@ -166,9 +166,9 @@ RegisterNetEvent('qb-pawnshop:server:pickupMelted', function(batches)
                     if not currentMelt(src, state) then state.busy = false; return end
                     if added then
                         TriggerClientEvent('qb-inventory:client:ItemBox', src, itemData(reward.item), 'add')
-                        Kora.notify.send(src, { title = Kora.lang('info.title'), message = Kora.lang('success.items_received', { value = reward.amount, value2 = itemData(reward.item).label }), type = 'success' })
+                        notifyPlayer(src, 'success.items_received', { value = reward.amount, value2 = itemData(reward.item).label }, 'success')
                     else
-                        Kora.notify.send(src, { title = Kora.lang('info.title'), message = Kora.lang('error.inventory_full', { value = itemData(reward.item).label }), type = 'warning', duration = 7500 })
+                        notifyPlayer(src, 'error.inventory_full', { value = itemData(reward.item).label }, 'warning', 7500)
                     end
                 end
             end

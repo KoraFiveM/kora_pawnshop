@@ -36,7 +36,19 @@ TriggerClientEvent = function(name, src, ...) clientEvents[#clientEvents + 1] = 
 Kora = { resources = { serverRegistry = function() return { track = noop, untrack = noop } end },
     callback = { register = noop }, distance = { player = function() return true end },
     sql = { insert = function() error('probe attempted a database write') end },
-    logging = { event = noop }, lang = function(key) return key end, notify = { send = noop } }
+    logging = { event = noop }, lang = function(key) return key end, notify = { send = noop },
+    util = { deepClone = function(value)
+        local seen = {}
+        local function clone(v)
+            if type(v) ~= 'table' then return v end
+            if seen[v] then return seen[v] end
+            local copy = {}
+            seen[v] = copy
+            for k, vv in pairs(v) do copy[clone(k)] = clone(vv) end
+            return copy
+        end
+        return clone(value)
+    end, isInteger = function(n) return type(n) == 'number' and n == n and n % 1 == 0 and n ~= math.huge and n ~= -math.huge end } }
 exports = setmetatable({}, {
     __call = function(_, name, fn) exportsByName[name] = fn end,
     __index = function(_, resource)

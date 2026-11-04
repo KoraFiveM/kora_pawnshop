@@ -41,17 +41,18 @@ local function itemsBlock(listItems, emptyDescription)
     return { type = 'list', id = 'items', items = listItems }
 end
 
-local function buildSellItems()
+local function buildItemListing(configList, opts)
     local listItems = {}
-    for _, item in ipairs(eligibleItems(Config.PawnItems)) do
+    for _, item in ipairs(eligibleItems(configList)) do
+        local label = itemData(item.name).label
         listItems[#listItems + 1] = {
-            id = 'sell:' .. item.name,
-            label = itemData(item.name).label,
-            description = 'Selling Price $' .. item.entry.price,
+            id = opts.prefix .. item.name,
+            label = label,
+            description = opts.description(label, item),
             badge = item.amount,
             action = {
-                id = sellAction,
-                label = 'Sell',
+                id = opts.actionId,
+                label = opts.actionLabel,
                 fields = {
                     { id = 'amount', label = 'Max Amount ' .. item.amount, type = 'number', min = 1, max = item.amount, default = 1, required = true },
                 },
@@ -61,25 +62,22 @@ local function buildSellItems()
     return listItems
 end
 
+local function buildSellItems()
+    return buildItemListing(Config.PawnItems, {
+        prefix = 'sell:',
+        actionId = sellAction,
+        actionLabel = 'Sell',
+        description = function(_, item) return 'Selling Price $' .. item.entry.price end,
+    })
+end
+
 local function buildMeltItems()
-    local listItems = {}
-    for _, item in ipairs(eligibleItems(Config.MeltingItems)) do
-        local label = itemData(item.name).label
-        listItems[#listItems + 1] = {
-            id = 'melt:' .. item.name,
-            label = label,
-            description = 'Melt ' .. label,
-            badge = item.amount,
-            action = {
-                id = meltAction,
-                label = 'Melt',
-                fields = {
-                    { id = 'amount', label = 'Max Amount ' .. item.amount, type = 'number', min = 1, max = item.amount, default = 1, required = true },
-                },
-            },
-        }
-    end
-    return listItems
+    return buildItemListing(Config.MeltingItems, {
+        prefix = 'melt:',
+        actionId = meltAction,
+        actionLabel = 'Melt',
+        description = function(label) return 'Melt ' .. label end,
+    })
 end
 
 local function buildNavigation()
