@@ -19,7 +19,7 @@ end
 
 local function exploitBan(src, reason)
     local identifiers = exports.kora_core:getIdentifiers(src)
-    MySQL.insert('INSERT INTO bans (name, license, discord, ip, reason, expire, bannedby) VALUES (?, ?, ?, ?, ?, ?, ?)', {
+    Kora.sql.insert('INSERT INTO bans (name, license, discord, ip, reason, expire, bannedby) VALUES (?, ?, ?, ?, ?, ?, ?)', {
         GetPlayerName(src),
         identifiers.license,
         identifiers.discord,

@@ -33,9 +33,9 @@ TriggerEvent = function(name, ...)
     for _, fn in ipairs(events[name] or {}) do fn(...) end
 end
 TriggerClientEvent = function(name, src, ...) clientEvents[#clientEvents + 1] = { name = name, src = src, args = { ... } } end
-MySQL = { insert = function() error('probe attempted a database write') end }
 Kora = { resources = { serverRegistry = function() return { track = noop, untrack = noop } end },
-    callback = { register = noop }, distance = { player = function() return true end }, sql = {},
+    callback = { register = noop }, distance = { player = function() return true end },
+    sql = { insert = function() error('probe attempted a database write') end },
     logging = { event = noop }, lang = function(key) return key end, notify = { send = noop } }
 exports = setmetatable({}, {
     __call = function(_, name, fn) exportsByName[name] = fn end,

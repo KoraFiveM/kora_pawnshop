@@ -9,14 +9,15 @@ version '2.0.0'
 
 dependency 'kora_lib'
 dependency 'kora_core'
+dependency 'kora_sql'
 
 shared_script {
     '@kora_lib/init.lua',
+    '@kora_sql/init.lua',
     'shared/config.lua'
 }
 
 server_scripts {
-    '@oxmysql/lib/MySQL.lua',
     'server/**.lua',
 }
 
