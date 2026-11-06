@@ -5,7 +5,7 @@ lua54 'yes'
 provide 'qbpawnshop'
 author 'Kakarot'
 description 'Allows players to sell items for money, built on the kora_lib AppShell'
-version '2.0.3'
+version '2.0.4'
 
 dependency 'kora_lib'
 dependency 'kora_core'
