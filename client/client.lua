@@ -165,16 +165,30 @@ Kora.nui.registerApp({
     onAction = onAction,
 })
 
+-- Open from TimeOpen:00 until TimeClosed:00 on the in-game clock (the closing hour itself
+-- is closed). TimeOpen > TimeClosed means overnight hours, e.g. 20 -> 4.
+local function isOpen()
+    if not Config.UseTimes then return true end
+    local hour = GetClockHours()
+    local open, close = Config.TimeOpen, Config.TimeClosed
+    if open == close then return true end
+    if open < close then return hour >= open and hour < close end
+    return hour >= open or hour < close
+end
+
 local function openPawnShop()
     if Kora.nui.isAppOpen(appId) then return end
-     if Config.UseTimes and not (GetClockHours() >= Config.TimeOpen and GetClockHours() <= Config.TimeClosed) then
-         Kora.notify.send({
-             title = 'Pawn Store',
-             message = 'Pawnshop is closed. Come back between ' .. Config.TimeOpen .. ':00 AM - ' .. Config.TimeClosed .. ':00 PM',
-             type = 'error',
-         })
-         return
-     end
+    if not isOpen() then
+        Kora.notify.send({
+            title = 'Pawn Store',
+            message = Kora.lang('error.closed', {
+                open = ('%02d:00'):format(Config.TimeOpen),
+                close = ('%02d:00'):format(Config.TimeClosed),
+            }),
+            type = 'error',
+        })
+        return
+    end
     refreshApp()
     Kora.nui.openApp(appId)
 end

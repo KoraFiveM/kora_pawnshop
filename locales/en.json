@@ -9,7 +9,8 @@
     },
     "error": {
         "no_items": "You don't have enough of that item",
-        "inventory_full": "Your inventory is full, you couldn't carry %{value}"
+        "inventory_full": "Your inventory is full, you couldn't carry %{value}",
+        "closed": "Pawnshop is closed. Come back between %{open} and %{close}."
     },
     "ui": {
         "sell": "Sell",

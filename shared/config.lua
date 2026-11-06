@@ -10,9 +10,9 @@ Config.PawnLocation = {
 }
 
 Config.BankMoney = false -- Set to true if you want the money to go into the players bank
-Config.UseTimes = false  -- Set to false if you want the pawnshop open 24/7
-Config.TimeOpen = 7      -- Opening Time
-Config.TimeClosed = 17   -- Closing Time
+Config.UseTimes = true   -- Opening hours on (in-game clock). Set to false if you want the pawnshop open 24/7
+Config.TimeOpen = 7      -- Opening hour (0-23, in-game clock): open from 07:00
+Config.TimeClosed = 17   -- Closing hour (0-23, in-game clock): closed from 17:00. May be lower than TimeOpen for overnight hours
 
 Config.PawnItems = {
     { item = 'goldchain', price = math.random(50, 100) },
