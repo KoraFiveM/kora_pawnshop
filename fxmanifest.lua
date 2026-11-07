@@ -13,11 +13,11 @@ dependency 'kora_sql'
 
 shared_script {
     '@kora_lib/init.lua',
-    '@kora_sql/init.lua',
     'shared/config.lua'
 }
 
 server_scripts {
+    '@kora_sql/init.lua',
     'server/**.lua',
 }
 

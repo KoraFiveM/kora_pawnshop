@@ -58,11 +58,17 @@ RegisterNetEvent('qb-pawnshop:server:sellPawnItems', function(itemName, itemAmou
         return
     end
 
-    local totalPrice = tonumber(itemAmount) * entry.price
+    itemAmount = positiveInteger(itemAmount)
+    if not itemAmount then
+        exploitBan(src, 'sellPawnItems invalid amount')
+        return
+    end
 
-    if exports['qb-inventory']:RemoveItem(src, itemName, tonumber(itemAmount), false, 'qb-pawnshop:server:sellPawnItems') then
+    local totalPrice = itemAmount * entry.price
+
+    if exports['qb-inventory']:RemoveItem(src, itemName, itemAmount, false, 'qb-pawnshop:server:sellPawnItems') then
         exports.kora_core:addMoney(src, Config.BankMoney and 'bank' or 'cash', totalPrice, 'qb-pawnshop:server:sellPawnItems')
-        notifyPlayer(src, 'success.sold', { value = tonumber(itemAmount), value2 = itemData(itemName).label, value3 = totalPrice }, 'success')
+        notifyPlayer(src, 'success.sold', { value = itemAmount, value2 = itemData(itemName).label, value3 = totalPrice }, 'success')
         TriggerClientEvent('qb-inventory:client:ItemBox', src, itemData(itemName), 'remove')
     else
         notifyPlayer(src, 'error.no_items', nil, 'error')
