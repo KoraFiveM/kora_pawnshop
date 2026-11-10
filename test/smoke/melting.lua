@@ -60,11 +60,11 @@ exports = setmetatable({}, {
                     if name == 'getShared' then return defs[field] end
                     if name == 'getPlayerData' then
                         if not data[src] then return nil end
-                        return field and QbInventory.copy(data[src][field[1]]) or QbInventory.copy(data[src])
+                        return field and KoraInventory.copy(data[src][field[1]]) or KoraInventory.copy(data[src])
                     end
                     if name == 'setPath' then
                         if field[2] then data[src].items[field[2]] = value else data[src].items = value end
-                        TriggerEvent('qbcore:server:inventoryChanged', src)
+                        TriggerEvent('kora_core:server:inventoryChanged', src)
                         return true
                     end
                 elseif resource == 'qb-core' then
@@ -85,8 +85,8 @@ exports = setmetatable({}, {
 })
 Config = {}
 dofile(root .. 'kora_inventory/config.lua'); dofile(root .. 'kora_inventory/shared.lua'); dofile(root .. 'kora_inventory/server.lua')
-local api = QbInventory.api
-local inventoryConfig = Config.qbinventory
+local api = KoraInventory.api
+local inventoryConfig = Config.kora_inventory
 dofile(root .. 'kora_pawnshop/shared/config.lua')
 dofile(arg[1] or 'server/server.lua')
 local function fire(name, ...) source = 7; return assert(events['qb-pawnshop:server:' .. name])[1](...) end
