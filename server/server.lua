@@ -117,7 +117,8 @@ RegisterNetEvent('qb-pawnshop:server:meltItemRemove', function(itemName, itemAmo
             print('[qb-pawnshop] Invalid melting reward for ' .. tostring(itemName))
             return
         end
-        rewards[#rewards + 1] = { item = reward.item, amount = amount }
+        -- Whole quantities stay integers so receipts and notifications read "2x", not "2.0x".
+        rewards[#rewards + 1] = { item = reward.item, amount = math.tointeger(amount) or amount }
     end
 
     -- Reserve before the inventory export can yield; only consumed inputs get a receipt.
