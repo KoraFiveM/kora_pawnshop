@@ -3,7 +3,7 @@ game 'gta5'
 lua54 'yes'
 author 'Kakarot'
 description 'Allows players to sell items for money, built on the kora_lib AppShell'
-version '2.0.7'
+version '2.0.8'
 
 dependency 'kora_lib'
 dependency 'kora_core'
