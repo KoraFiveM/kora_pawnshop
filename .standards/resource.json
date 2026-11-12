@@ -1,0 +1,42 @@
+{
+  "resource": "kora_pawnshop",
+  "standardsRevision": "2026-11-12.1",
+  "realms": {
+    "client": [
+      "client/client.lua"
+    ],
+    "server": [
+      "server/server.lua"
+    ],
+    "shared": [
+      "shared/config.lua"
+    ],
+    "manifest": [
+      "fxmanifest.lua"
+    ],
+    "test": [
+      "test/smoke/melting.lua"
+    ]
+  },
+  "exclude": [
+    ".git/*",
+    ".github/*",
+    ".standards/*",
+    "node_modules/*",
+    "**/node_modules/*",
+    "vendor/*",
+    "**/vendor/*",
+    "web/*",
+    "ui/*",
+    "html/*",
+    "dist/*",
+    "artifacts/*",
+    "runtime/*",
+    "txData/*",
+    "storage/*",
+    "stream/*",
+    "docs/*",
+    "__pycache__/*",
+    "modules/lookup/data/*"
+  ]
+}
