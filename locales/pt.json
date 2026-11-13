@@ -1,0 +1,19 @@
+{
+    "info": {
+        "title": "Loja de Penhores",
+        "melt_wait": "Os teus itens estão a derreter. Volta dentro de %{value} minutos."
+    },
+    "success": {
+        "sold": "Vendeste %{value}x %{value2} por $%{value3}",
+        "items_received": "Recebeste %{value}x %{value2}"
+    },
+    "error": {
+        "no_items": "Não tens quantidade suficiente desse item",
+        "inventory_full": "O teu inventário está cheio, não conseguiste carregar %{value}",
+        "closed": "A loja de penhores está encerrada. Volta entre as %{open} e as %{close}."
+    },
+    "ui": {
+        "sell": "Vender",
+        "melt": "Derreter"
+    }
+}
