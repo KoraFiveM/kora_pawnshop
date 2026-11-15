@@ -106,7 +106,7 @@ RegisterNetEvent('qb-pawnshop:server:meltItemRemove', function(itemName, itemAmo
     local meltTime = tonumber(entry.meltTime)
     local duration = meltTime and itemAmount * 1.0 * meltTime * 60000
     if not duration or duration < 0 or duration ~= duration or duration == math.huge then
-        print('[qb-pawnshop] Invalid melt time for ' .. tostring(itemName))
+        Kora.logging.warn('melting.invalid_melt_time', 'Invalid melt time for item', { item = tostring(itemName) })
         return
     end
     local rewards = {}
@@ -114,7 +114,7 @@ RegisterNetEvent('qb-pawnshop:server:meltItemRemove', function(itemName, itemAmo
         local perItem = tonumber(reward.amount)
         local amount = perItem and itemAmount * 1.0 * perItem
         if not amount or amount ~= amount or math.abs(amount) == math.huge or not itemData(reward.item) then
-            print('[qb-pawnshop] Invalid melting reward for ' .. tostring(itemName))
+            Kora.logging.warn('melting.invalid_reward', 'Invalid melting reward for item', { item = tostring(itemName) })
             return
         end
         -- Whole quantities stay integers so receipts and notifications read "2x", not "2.0x".
