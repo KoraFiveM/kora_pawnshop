@@ -1,0 +1,19 @@
+{
+    "info": {
+        "title": "חנות Pawn",
+        "melt_wait": "הפריטים שלך נמסים. חזרה לדף %{value} דקות."
+    },
+    "success": {
+        "sold": "מכרת %{value}x %{value2}QQ עבור $ %{value3}",
+        "items_received": "קיבלת %{value}x %{value2}"
+    },
+    "error": {
+        "no_items": "אין לך מספיק את הפריט הזה",
+        "inventory_full": "המלאי שלך מלא, אתה לא יכול לשאת %{value}",
+        "closed": "החנות סגורה. חזור בין %{open} ו %{close}."
+    },
+    "ui": {
+        "sell": "למכור",
+        "melt": "מל"
+    }
+}

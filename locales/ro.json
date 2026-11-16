@@ -1,0 +1,19 @@
+{
+    "info": {
+        "title": "Pion Shop",
+        "melt_wait": "Lucrurile tale se topesc. Întoarce-te în %{value} minute."
+    },
+    "success": {
+        "sold": "Ai vândut x  pentru $ZXQPH2XQ %{value} %{value2} %{value3}",
+        "items_received": "Aţi primit %{value}x %{value2}"
+    },
+    "error": {
+        "no_items": "Nu ai destul din acel articol",
+        "inventory_full": "Inventarul este plin, nu ai putea transporta %{value}",
+        "closed": "Pionshop este închis. Întoarce-te între %{open} și %{close}."
+    },
+    "ui": {
+        "sell": "Vinde",
+        "melt": "Se topește"
+    }
+}

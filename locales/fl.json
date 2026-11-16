@@ -1,0 +1,19 @@
+{
+    "info": {
+        "title": "Pinagbibidahan",
+        "melt_wait": "Ang iyong mga gamit ay natutunaw. Bumalik sa %{value} minuto."
+    },
+    "success": {
+        "sold": "Nagbenta ka ng %{value}x %{value2} para sa $%{value3}",
+        "items_received": "Nakatanggap ka ng %{value}x %{value2}"
+    },
+    "error": {
+        "no_items": "Wala ka ng sapat sa bagay na iyon",
+        "inventory_full": "Punô ang imbentaryo mo, hindi ka maaaring magdala ng %{value}",
+        "closed": "Isinara ang Pawnshop. Bumalik sa pagitan ng %{open} at %{close}."
+    },
+    "ui": {
+        "sell": "Ipinagbibili",
+        "melt": "Tunawin"
+    }
+}

@@ -1,0 +1,19 @@
+{
+    "info": {
+        "title": "パンショップ",
+        "melt_wait": "あなたの商品が溶けます。 %{value}分に戻ってきます。"
+    },
+    "success": {
+        "sold": "%{value}x %{value2}を$ %{value3}に販売しました",
+        "items_received": "%{value}x %{value2}を受け取りました"
+    },
+    "error": {
+        "no_items": "その項目が十分でない",
+        "inventory_full": "あなたの在庫は十分に、%{value}を運ぶことができません",
+        "closed": "ショップは閉店となります。 %{open}と%{close}の間に戻って来ます。"
+    },
+    "ui": {
+        "sell": "販売代理店",
+        "melt": "メニュー"
+    }
+}

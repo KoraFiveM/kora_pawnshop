@@ -1,0 +1,19 @@
+{
+    "info": {
+        "title": "Trgovina z založbo",
+        "melt_wait": "Tvoji predmeti se topijo. Vrni se v %{value} minutah."
+    },
+    "success": {
+        "sold": "Prodajali ste %{value}x %{value2} za $%{value3}",
+        "items_received": "Prejeli ste %{value}x %{value2}"
+    },
+    "error": {
+        "no_items": "Nimaš dovolj tega.",
+        "inventory_full": "Tvoj inventar je poln. %{value}",
+        "closed": "Zastavljalnica je zaprta. Vrni se med %{open} in %{close}."
+    },
+    "ui": {
+        "sell": "Prodaja",
+        "melt": "Taline"
+    }
+}

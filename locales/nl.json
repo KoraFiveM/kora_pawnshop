@@ -1,0 +1,19 @@
+{
+    "info": {
+        "title": "Pion Shop",
+        "melt_wait": "Je spullen smelten. Kom terug in %{value} minuten."
+    },
+    "success": {
+        "sold": "Je verkocht %{value}x %{value2} voor $%{value3}",
+        "items_received": "U hebt %{value}x %{value2} ontvangen"
+    },
+    "error": {
+        "no_items": "Daar heb je niet genoeg van.",
+        "inventory_full": "Je inventaris is vol, je kon %{value} niet dragen",
+        "closed": "De pandjeshuis is gesloten. Kom terug tussen %{open} en %{close}."
+    },
+    "ui": {
+        "sell": "Verkoop",
+        "melt": "Smelten"
+    }
+}

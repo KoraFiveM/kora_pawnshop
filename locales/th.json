@@ -1,0 +1,19 @@
+{
+    "info": {
+        "title": "โรงรับจํานํา",
+        "melt_wait": "ของของคุณกําลังละลาย กลับมาใน ZXQEP0XZQ นาที %{value}"
+    },
+    "success": {
+        "sold": "คุณขาย ZXQIP0XZQx ZXQEPEV1XZQ สําหรับ $ZXQAV2XZQ %{value} %{value2} %{value3}",
+        "items_received": "คุณได้รับ ZXQIXZQXx ZXQFS1XZQ %{value} %{value2}"
+    },
+    "error": {
+        "no_items": "แกมีของไม่พอ",
+        "inventory_full": "รายการสินค้าของคุณเต็ม คุณไม่สามารถดําเนินการ ZXQPULXZQ %{value}",
+        "closed": "โรงรับจํานําปิดแล้ว กลับมาระหว่าง ZXQIFS0XZQ และ ZXQFUF1XZQ %{open} %{close}"
+    },
+    "ui": {
+        "sell": "ขาย",
+        "melt": "ละลาย"
+    }
+}

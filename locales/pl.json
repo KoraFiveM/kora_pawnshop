@@ -1,0 +1,19 @@
+{
+    "info": {
+        "title": "Piwnica",
+        "melt_wait": "Twoje rzeczy się topią. Wróć za kilka minut. %{value}"
+    },
+    "success": {
+        "sold": "Sprzedałeś %{value}x %{value2} za $%{value3}",
+        "items_received": "Otrzymywano %{value}x %{value2}"
+    },
+    "error": {
+        "no_items": "Nie masz dość tej rzeczy.",
+        "inventory_full": "Twój inwentarz jest pełny, nie możesz nosić %{value}",
+        "closed": "Pawnshop jest zamknięty. Wróć między %{open} a %{close}."
+    },
+    "ui": {
+        "sell": "Sprzedaj",
+        "melt": "Roztop"
+    }
+}

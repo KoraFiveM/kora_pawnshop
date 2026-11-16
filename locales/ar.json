@@ -1,0 +1,19 @@
+{
+    "info": {
+        "title": "طابور",
+        "melt_wait": "أغراضك تذوب عُد إلى الدقائق (زكس كي) %{value}"
+    },
+    "success": {
+        "sold": "لقد بعت (زكس كيو فاكس) (زكس كيكس) (زيك) %{value} %{value2} %{value3}",
+        "items_received": "لقد إستلمت (زكس كيز) %{value} %{value2}"
+    },
+    "error": {
+        "no_items": "ليس لديك ما يكفي من هذا البند",
+        "inventory_full": "مخزونك ممتلئ، لم تستطع حمل (زيك بيه 0XQ) %{value}",
+        "closed": "محل الرهون مغلق عُدْ بين %{open} و %{close}."
+    },
+    "ui": {
+        "sell": "Sell",
+        "melt": "Melt"
+    }
+}

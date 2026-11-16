@@ -1,0 +1,19 @@
+{
+    "info": {
+        "title": "Pawn Shop",
+        "melt_wait": "Barang-barangmu meleleh. Kembalilah dalam beberapa menit. %{value}"
+    },
+    "success": {
+        "sold": "Anda menjual x  untuk $ZXQPH2XQ %{value} %{value2} %{value3}",
+        "items_received": "Anda menerima %{value}x %{value2}"
+    },
+    "error": {
+        "no_items": "Anda tidak memiliki cukup item itu",
+        "inventory_full": "Inventaris Anda penuh, Anda tidak bisa membawa %{value}",
+        "closed": "Pawnshop ditutup. Kembali antara %{open} dan %{close}."
+    },
+    "ui": {
+        "sell": "Jual",
+        "melt": "Melt"
+    }
+}

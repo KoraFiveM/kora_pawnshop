@@ -1,0 +1,19 @@
+{
+    "info": {
+        "title": "Pandipood",
+        "melt_wait": "Su asjad sulavad. Tule tagasi %{value} minutites."
+    },
+    "success": {
+        "sold": "Sa müüsid x  $ZXQ2XZQ %{value} %{value2} %{value3}",
+        "items_received": "Sa said %{value}x %{value2}"
+    },
+    "error": {
+        "no_items": "Sul pole seda asja piisavalt.",
+        "inventory_full": "Teie inventar on täis, te ei saanud %{value}-i kanda",
+        "closed": "Pandimaja on suletud. Tule tagasi %{open} ja %{close} vahel."
+    },
+    "ui": {
+        "sell": "Müü",
+        "melt": "Sulata"
+    }
+}

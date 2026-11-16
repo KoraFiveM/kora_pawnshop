@@ -1,0 +1,19 @@
+{
+    "info": {
+        "title": "Magasin de pions",
+        "melt_wait": "Vos objets sont en train de fondre. Reviens dans les minutes %{value}."
+    },
+    "success": {
+        "sold": "Vous avez vendu %{value}x %{value2} pour $%{value3}",
+        "items_received": "Vous avez reçu %{value}x %{value2}"
+    },
+    "error": {
+        "no_items": "Vous n'en avez pas assez.",
+        "inventory_full": "Votre inventaire est complet, vous ne pouviez pas transporter %{value}",
+        "closed": "Pawnshop est fermé. Revenez entre %{open} et %{close}."
+    },
+    "ui": {
+        "sell": "Vendre",
+        "melt": "Faire fondre"
+    }
+}

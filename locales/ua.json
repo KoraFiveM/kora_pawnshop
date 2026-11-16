@@ -1,0 +1,19 @@
+{
+    "info": {
+        "title": "Pawn магазин",
+        "melt_wait": "Ваші предмети розтоплюють. Зайдіть в %{value} хвилин."
+    },
+    "success": {
+        "sold": "Продається %{value}x %{value2} за $%{value3}",
+        "items_received": "Ви отримали %{value}x %{value2}"
+    },
+    "error": {
+        "no_items": "Вам не вистачає цього предмета",
+        "inventory_full": "Ви не можете носити %{value}",
+        "closed": "Закрило пальничку. ЗXQPH0XZQ і . %{open} %{close}"
+    },
+    "ui": {
+        "sell": "Продати",
+        "melt": "М'ята"
+    }
+}
