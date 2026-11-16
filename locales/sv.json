@@ -1,0 +1,19 @@
+{
+    "info": {
+        "title": "Pawn Shop",
+        "melt_wait": "Dina objekt smälter. Kom tillbaka i %{value} minuter."
+    },
+    "success": {
+        "sold": "Du sålde %{value}x %{value2} för $ %{value3}",
+        "items_received": "Du fick %{value}x %{value2}"
+    },
+    "error": {
+        "no_items": "Du har inte tillräckligt med det objektet",
+        "inventory_full": "Din inventering är full, du kan inte bära %{value}",
+        "closed": "Pawnshop är stängd. Kom tillbaka mellan %{open} och %{close}."
+    },
+    "ui": {
+        "sell": "Sälj",
+        "melt": "Melt"
+    }
+}

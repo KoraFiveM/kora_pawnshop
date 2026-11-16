@@ -1,0 +1,19 @@
+{
+    "info": {
+        "title": "Paneļu veikals",
+        "melt_wait": "Tavi priekšmeti kūst. Atgriezies %{value} minūtēs."
+    },
+    "success": {
+        "sold": "Jūs pārdevāt %{value}x %{value2} par $%{value3}",
+        "items_received": "Jūs saņēmāt %{value}x %{value2}"
+    },
+    "error": {
+        "no_items": "Tev nepietiek ar to lietu",
+        "inventory_full": "Jūsu inventārs ir pilns, jūs nevarat veikt %{value}",
+        "closed": "Pawnshop ir slēgts. Atgriezties starp %{open} un %{close}."
+    },
+    "ui": {
+        "sell": "Pārdot",
+        "melt": "Izkausēt"
+    }
+}

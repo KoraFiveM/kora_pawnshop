@@ -1,0 +1,19 @@
+{
+    "info": {
+        "title": "Pawn Shop",
+        "melt_wait": "Eşyalarınız eriyor. %{value} dakikada geri gelin."
+    },
+    "success": {
+        "sold": "x  için $PH0XZQx %{value} %{value2} %{value3}",
+        "items_received": "%{value}x %{value2}"
+    },
+    "error": {
+        "no_items": "Bu öğeye yeterince sahip değilsiniz",
+        "inventory_full": "envanteriniz dolu, %{value}",
+        "closed": "Pawnshop kapalıdır. %{open} ve %{close} arasında geri gelin."
+    },
+    "ui": {
+        "sell": "Sat Satış Sat",
+        "melt": "Melt"
+    }
+}

@@ -1,0 +1,19 @@
+{
+    "info": {
+        "title": "فروشگاه Pawn Shop",
+        "melt_wait": "اقلام شما ذوب می شوند. بازگشت به چند دقیقه %{value}"
+    },
+    "success": {
+        "sold": "شما xQ0XZQx را به قیمت 2X دلار فروخته اید. %{value} %{value2} %{value3}",
+        "items_received": "xQ0XZQx را دریافت کردید %{value} %{value2}"
+    },
+    "error": {
+        "no_items": "شما به اندازه کافی از این آیتم ندارید",
+        "inventory_full": "موجودی شما پر است، شما نمی توانید XQ0XZ را حمل کنید %{value}",
+        "closed": "Pawnshop بسته است. بازگشت بین xQ0XZQ و xQPH1XZQ %{open} %{close}"
+    },
+    "ui": {
+        "sell": "فروش فروش",
+        "melt": "Melt"
+    }
+}

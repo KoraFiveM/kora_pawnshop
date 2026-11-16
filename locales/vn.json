@@ -1,0 +1,19 @@
+{
+    "info": {
+        "title": "Tiệm cầm đồ",
+        "melt_wait": "Đồ đạc của anh đang tan chảy. Quay lại trong phút %{value}."
+    },
+    "success": {
+        "sold": "Bạn đã bán ZXQH0XZQX ZXQP1XZQ cho $ZPH2XZQ %{value} %{value2} %{value3}",
+        "items_received": "Bạn đã nhận được ZXQH0XZQX ZXQP1XZQ %{value} %{value2}"
+    },
+    "error": {
+        "no_items": "Anh không có đủ thứ đó đâu.",
+        "inventory_full": "Kho hàng của anh đầy rồi, anh không thể mang ZXQH0XZQ %{value}",
+        "closed": "Tiệm cầm đồ đóng cửa rồi. Quay lại giữa ZXQP0XZQ và . %{open} %{close}"
+    },
+    "ui": {
+        "sell": "Bán",
+        "melt": "Chảy"
+    }
+}

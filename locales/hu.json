@@ -1,0 +1,19 @@
+{
+    "info": {
+        "title": "Gyalog",
+        "melt_wait": "A dolgaid olvadnak. Gyere vissza %{value} perc múlva."
+    },
+    "success": {
+        "sold": "%{value}x %{value2}-t adtál el $%{value3}-ért.",
+        "items_received": "Ön %{value}x %{value2}-t kapott"
+    },
+    "error": {
+        "no_items": "Nincs elég belőle.",
+        "inventory_full": "A leltárad tele van, nem viheted magaddal a %{value}-t.",
+        "closed": "A zálogház zárva van. Gyere vissza a %{open} és a %{close} közé."
+    },
+    "ui": {
+        "sell": "Eladás",
+        "melt": "Olvad"
+    }
+}

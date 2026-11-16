@@ -1,0 +1,19 @@
+{
+    "info": {
+        "title": "Negozio di abbigliamento",
+        "melt_wait": "I tuoi articoli si stanno sciogliendo. Torna in minuti %{value}."
+    },
+    "success": {
+        "sold": "Hai venduto %{value}x %{value2} per $%{value3}",
+        "items_received": "Hai ricevuto %{value}x %{value2}"
+    },
+    "error": {
+        "no_items": "Non hai abbastanza di quell'oggetto.",
+        "inventory_full": "Il tuo inventario è pieno, non puoi portare %{value}",
+        "closed": "Pawnshop e' chiuso. Torna tra %{open} e %{close}."
+    },
+    "ui": {
+        "sell": "Vendita",
+        "melt": "Melt"
+    }
+}

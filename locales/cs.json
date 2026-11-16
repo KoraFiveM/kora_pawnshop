@@ -1,0 +1,19 @@
+{
+    "info": {
+        "title": "Zastavárna",
+        "melt_wait": "Vaše věci se rozpouští. Vraťte se za %{value} minut."
+    },
+    "success": {
+        "sold": "Prodal jste %{value}x %{value2} za $%{value3}",
+        "items_received": "Obdrželi jste %{value}x %{value2}"
+    },
+    "error": {
+        "no_items": "Nemáš toho dost.",
+        "inventory_full": "Váš inventář je plný, nemohl jste nést %{value}",
+        "closed": "Pawnshop je zavřený. Vraťte se mezi %{open} a %{close}."
+    },
+    "ui": {
+        "sell": "Prodej",
+        "melt": "Rozpustit"
+    }
+}

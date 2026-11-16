@@ -1,0 +1,19 @@
+{
+    "info": {
+        "title": "awn店",
+        "melt_wait": "你的东西正在融化 回来,ZQQPH0XZQ分钟。 %{value}"
+    },
+    "success": {
+        "sold": "你卖了ZQQPH0XZQxZQPH1XZQ 以ZZQPH2XZQ %{value} %{value2} %{value3}",
+        "items_received": "你收到ZQQPH0XZQXXPH1XZQ %{value} %{value2}"
+    },
+    "error": {
+        "no_items": "你不够那东西",
+        "inventory_full": "你的存货已经满了,你不能携带ZQQPH0XZQ %{value}",
+        "closed": "普恩店关门了 回到%{open}和%{close}之间."
+    },
+    "ui": {
+        "sell": "卖",
+        "melt": "熔化"
+    }
+}

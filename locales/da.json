@@ -1,0 +1,19 @@
+{
+    "info": {
+        "title": "Pawn Shop",
+        "melt_wait": "Dine ting smelter. Kom tilbage om lidt. %{value}"
+    },
+    "success": {
+        "sold": "Du solgte %{value}x %{value2} for $%{value3}",
+        "items_received": "Du modtog %{value}x %{value2}"
+    },
+    "error": {
+        "no_items": "Du har ikke nok af den vare",
+        "inventory_full": "Din beholdning er fuld, du kunne ikke bære %{value}",
+        "closed": "Pawnshop er lukket. Kom tilbage mellem %{open} og %{close}."
+    },
+    "ui": {
+        "sell": "Sælg",
+        "melt": "Smeltet"
+    }
+}

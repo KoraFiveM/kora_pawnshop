@@ -1,0 +1,19 @@
+{
+    "info": {
+        "title": "Pawn Shop",
+        "melt_wait": "Seus itens estão derretendo. Volte em minutos %{value}."
+    },
+    "success": {
+        "sold": "Você vendeu %{value}x %{value2} por $%{value3}",
+        "items_received": "Você recebeu %{value}x %{value2}"
+    },
+    "error": {
+        "no_items": "Você não tem o suficiente desse item.",
+        "inventory_full": "Seu inventário está cheio, você não poderia carregar %{value}",
+        "closed": "A loja de penhores está fechada. Volte entre %{open} e %{close}."
+    },
+    "ui": {
+        "sell": "Venda",
+        "melt": "Derreter."
+    }
+}

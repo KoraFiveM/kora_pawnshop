@@ -1,0 +1,19 @@
+{
+    "info": {
+        "title": "Pawn Shop",
+        "melt_wait": "Tus artículos se derriten. Vuelve a los minutos de %{value}."
+    },
+    "success": {
+        "sold": "Vendió %{value}x %{value2} por $%{value3}",
+        "items_received": "Usted recibió %{value}x %{value2}"
+    },
+    "error": {
+        "no_items": "No tienes suficiente de ese artículo.",
+        "inventory_full": "Tu inventario está lleno, no puedes llevar %{value}",
+        "closed": "Pawnshop está cerrado. Vuelve entre %{open} y %{close}."
+    },
+    "ui": {
+        "sell": "Vender",
+        "melt": "Melt"
+    }
+}
