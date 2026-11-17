@@ -180,7 +180,7 @@ local function openPawnShop()
     if Kora.nui.isAppOpen(appId) then return end
     if not isOpen() then
         Kora.notify.send({
-            title = 'Pawn Store',
+            title = Kora.lang('info.title'),
             message = Kora.lang('error.closed', {
                 open = ('%02d:00'):format(Config.TimeOpen),
                 close = ('%02d:00'):format(Config.TimeClosed),
